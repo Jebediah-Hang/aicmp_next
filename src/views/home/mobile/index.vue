@@ -22,6 +22,6 @@ function mScroll(e: any) {
 
 <style lang="scss" scoped>
 .main-content {
-  height: 2000px;
+  // height: 2000px;
 }
 </style>
