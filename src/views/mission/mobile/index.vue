@@ -1,5 +1,7 @@
 <template>
-  <div class="home-page">
+  <div class="view-nav"></div>
+  <div>Mobile Mission List</div>
+  <div>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam nostrum eveniet maxime praesentium iste aliquid repudiandae perferendis ut molestiae cumque dolorem perspiciatis tempora, quia, quam eaque voluptate dolor quis quos.
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum animi numquam consequuntur aspernatur quisquam suscipit sed nobis, vel cum earum, in atque, at nesciunt a repellat eveniet reiciendis distinctio delectus?
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, magni eum? Totam placeat dolores aut, eos sed, recusandae, animi nostrum soluta assumenda veritatis voluptatum dicta quos excepturi modi. Hic, accusamus.
@@ -20,8 +22,12 @@
 </script>
 
 <style lang="scss" scoped>
-.home-page {
-  color: #fff;
-  // background-color: rgba(0, 0, 0, .9);
+.view-nav {
+  width: 100%;
+  height: 60px;
+  border-bottom: #ddd solid 1px;
+  background-color: antiquewhite;
+  position: sticky;
+  top: -2px;
 }
 </style>

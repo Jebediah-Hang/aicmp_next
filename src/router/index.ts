@@ -18,8 +18,15 @@ const router = createRouter({
       children: [
         {
           path: 'home',
+          name: 'D_Home',
           meta: { checkDevice: true },
           component: () => import('@/views/home/desktop/index.vue')
+        },
+        {
+          path: 'mission',
+          name: 'D_Mission',
+          meta: { checkDevice: true },
+          component: () => import('@/views/mission/desktop/index.vue')
         }
       ]
     },
@@ -30,8 +37,15 @@ const router = createRouter({
       children: [
         {
           path: 'home',
+          name: 'M_Home',
           meta: { checkDevice: true },
           component: () => import('@/views/home/mobile/index.vue')
+        },
+        {
+          path: 'mission',
+          name: 'M_Mission',
+          meta: { checkDevice: true },
+          component: () => import('@/views/mission/mobile/index.vue')
         }
       ]
     },
