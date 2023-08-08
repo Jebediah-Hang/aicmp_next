@@ -23,10 +23,16 @@ const router = createRouter({
           component: () => import('@/views/home/desktop/index.vue')
         },
         {
-          path: 'mission',
-          name: 'D_Mission',
+          path: 'past',
+          name: 'D_Past',
           meta: { checkDevice: true },
-          component: () => import('@/views/mission/desktop/index.vue')
+          component: () => import('@/views/mission/desktop/pastMission.vue')
+        },
+        {
+          path: 'upcoming',
+          name: 'D_Upcomeing',
+          meta: { checkDevice: true },
+          component: () => import('@/views/mission/desktop/upcomeMission.vue')
         }
       ]
     },
