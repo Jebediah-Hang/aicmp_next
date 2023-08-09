@@ -4,25 +4,25 @@
       <div class="nav-home" @click="toHomePage">
         <div class="home-logo"></div>
       </div>
-      <div class="nav-item" @click="toPastPage">PAST</div>
-      <div class="nav-item" @click="toUpcomePage">UPCOMING</div>
-      <div class="nav-item">TREND</div>
-      <div class="nav-item">FOLLOW</div>
-      <div class="nav-item">RESOURCES</div>
-      <div class="nav-item">ARTICLE</div>
-      <div class="nav-item">VEHICLE</div>
-      <div class="nav-item">OVERVIEW</div>
+      <div class="nav-item" @click="toPastPage">{{ $t('desktop.menu.past') }}</div>
+      <div class="nav-item" @click="toUpcomePage">{{ $t('desktop.menu.upcoming') }}</div>
+      <div class="nav-item">{{ $t('desktop.menu.trend') }}</div>
+      <div class="nav-item">{{ $t('desktop.menu.follow') }}</div>
+      <div class="nav-item">{{ $t('desktop.menu.resources') }}</div>
+      <div class="nav-item">{{ $t('desktop.menu.article') }}</div>
+      <div class="nav-item">{{ $t('desktop.menu.vehicle') }}</div>
+      <div class="nav-item">{{ $t('desktop.menu.overview') }}</div>
     </div>
     <div class="nav-right">
       <div class="lang-block">
-        <el-dropdown>
+        <el-dropdown @command="setLanguage">
           <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="28px" height="28px">
             <path fill="#fff" d="m18.5 10l4.4 11h-2.155l-1.201-3h-4.09l-1.199 3h-2.154L16.5 10h2zM10 2v2h6v2h-1.968a18.222 18.222 0 0 1-3.62 6.301a14.864 14.864 0 0 0 2.336 1.707l-.751 1.878A17.015 17.015 0 0 1 9 13.725a16.676 16.676 0 0 1-6.201 3.548l-.536-1.929a14.7 14.7 0 0 0 5.327-3.042A18.078 18.078 0 0 1 4.767 8h2.24A16.032 16.032 0 0 0 9 10.877a16.165 16.165 0 0 0 2.91-4.876L2 6V4h6V2h2zm7.5 10.885L16.253 16h2.492L17.5 12.885z"></path>
           </svg>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>English</el-dropdown-item>
-              <el-dropdown-item>中文</el-dropdown-item>
+              <el-dropdown-item command="en">English</el-dropdown-item>
+              <el-dropdown-item command="zh">中文</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -39,6 +39,8 @@
 
 <script setup lang="ts">
 import { RouterView, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { useLangStore } from '@/stores/lang'
 
 const router = useRouter()
 
@@ -52,7 +54,13 @@ function toUpcomePage() {
   router.push('/aicmp/desktop/upcoming')
 }
 
-const avatarUrl = ''
+const i18n = useI18n()
+const { setLang } = useLangStore()
+
+function setLanguage(locale: string) {
+  i18n.locale.value = locale
+  setLang(locale)
+}
 
 </script>
 

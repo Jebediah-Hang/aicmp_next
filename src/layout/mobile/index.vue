@@ -3,7 +3,22 @@
     class="main-header"
     :style="{ height: `${!isHomePage && isShowHeader ? 40 : 0}px`}"
   >
-    {{ isShowHeader }}
+    <div class="person-block">
+      <i class="fa fa-user-circle-o"></i>
+    </div>
+    <div class="lang-block">
+      <el-dropdown trigger="click" @command="setLanguage">
+        <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="22px" height="22px">
+          <path fill="#666" d="m18.5 10l4.4 11h-2.155l-1.201-3h-4.09l-1.199 3h-2.154L16.5 10h2zM10 2v2h6v2h-1.968a18.222 18.222 0 0 1-3.62 6.301a14.864 14.864 0 0 0 2.336 1.707l-.751 1.878A17.015 17.015 0 0 1 9 13.725a16.676 16.676 0 0 1-6.201 3.548l-.536-1.929a14.7 14.7 0 0 0 5.327-3.042A18.078 18.078 0 0 1 4.767 8h2.24A16.032 16.032 0 0 0 9 10.877a16.165 16.165 0 0 0 2.91-4.876L2 6V4h6V2h2zm7.5 10.885L16.253 16h2.492L17.5 12.885z"></path>
+        </svg>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="en">English</el-dropdown-item>
+            <el-dropdown-item command="zh">中文</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
   </div>
   <div
     ref="mainView"
@@ -21,35 +36,35 @@
       @click="toHomePage"
     >
       <i class="fa fa-home"></i>
-      <div>HOME</div>
+      <div>{{ $t('mobile.menu.home') }}</div>
     </div>
     <div
       class="nav-item"
       @click="toMissionPage"
     >
       <i class="fa fa-rocket"></i>
-      <div>MISSION</div>
+      <div>{{ $t('mobile.menu.mission') }}</div>
     </div>
     <div
       class="nav-item"
       @click="toTrendPage"
     >
       <i class="fa fa-compass"></i>
-      <div>TREND</div>
+      <div>{{ $t('mobile.menu.trend') }}</div>
     </div>
     <div
       class="nav-item"
       @click="toResourcePage"
     >
       <i class="fa fa-cubes"></i>
-      <div>RESOURCE</div>
+      <div>{{ $t('mobile.menu.resources') }}</div>
     </div>
     <div
       class="nav-item"
       @click="toArticlePage"
     >
       <i class="fa fa-book"></i>
-      <div>ARTICLE</div>
+      <div>{{ $t('mobile.menu.article') }}</div>
     </div>
   </div>
 </template>
@@ -58,6 +73,8 @@
 import { ref, toRefs, watch, computed } from 'vue'
 import { RouterView, useRouter, useRoute } from 'vue-router'
 import { useScroll } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
+import { useLangStore } from '@/stores/lang'
 
 const mainView = ref<HTMLElement | null>(null)
 const { directions } = useScroll(mainView)
@@ -89,6 +106,15 @@ function toMissionPage() {
 function toTrendPage() {}
 function toResourcePage() {}
 function toArticlePage() {}
+
+const i18n = useI18n()
+const { setLang } = useLangStore()
+
+function setLanguage(locale: string) {
+  i18n.locale.value = locale
+  setLang(locale)
+}
+
 </script>
 
 <style scoped lang="scss">
@@ -97,6 +123,30 @@ function toArticlePage() {}
   overflow: hidden;
   border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
   transition: all linear .2s;
+  display: flex;
+  justify-content: space-between;
+  .person-block {
+    width: 50px;
+    height: 100%;
+    padding: 9px 14px;
+    > i {
+      color: #666;
+      font-size: 22px;
+    }
+  }
+  .lang-block {
+    width: 50px;
+    height: 100%;
+    padding: 9px 14px;
+    :deep(.el-dropdown) {
+      &:focus-visible {
+        outline: none;
+      }
+      .el-only-child__content:focus-visible {
+        outline: none;
+      }
+    }
+  }
 }
 .content-main {
   width: 100%;
