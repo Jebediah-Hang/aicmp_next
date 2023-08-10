@@ -4,14 +4,54 @@
       <div class="nav-home" @click="toHomePage">
         <div class="home-logo"></div>
       </div>
-      <div class="nav-item" @click="toPastPage">{{ $t('desktop.menu.past') }}</div>
-      <div class="nav-item" @click="toUpcomePage">{{ $t('desktop.menu.upcoming') }}</div>
-      <div class="nav-item">{{ $t('desktop.menu.trend') }}</div>
-      <div class="nav-item">{{ $t('desktop.menu.follow') }}</div>
-      <div class="nav-item">{{ $t('desktop.menu.resources') }}</div>
-      <div class="nav-item">{{ $t('desktop.menu.article') }}</div>
-      <div class="nav-item">{{ $t('desktop.menu.vehicle') }}</div>
-      <div class="nav-item">{{ $t('desktop.menu.overview') }}</div>
+      <div
+        class="nav-item"
+        @click="toPastPage"
+      >
+        {{ $t('desktop.menu.past') }}
+      </div>
+      <div
+        class="nav-item"
+        @click="toUpcomePage"
+      >
+        {{ $t('desktop.menu.upcoming') }}
+      </div>
+      <div
+        class="nav-item"
+        @click="toTrendPage"
+      >
+        {{ $t('desktop.menu.trend') }}
+      </div>
+      <div
+        @click="toFollowPage"
+        class="nav-item"
+      >
+        {{ $t('desktop.menu.follow') }}
+      </div>
+      <div
+        class="nav-item"
+        @click="toArticlePage"
+      >
+        {{ $t('desktop.menu.article') }}
+      </div>
+      <div
+        class="nav-item"
+        @click="toResourcesPage"
+      >
+        {{ $t('desktop.menu.resources') }}
+      </div>
+      <div
+        class="nav-item"
+        @click="toVehiclePage"
+      >
+        {{ $t('desktop.menu.vehicle') }}
+      </div>
+      <div
+        class="nav-item"
+        @click="toOverviewPage"
+      >
+        {{ $t('desktop.menu.overview') }}
+      </div>
     </div>
     <div class="nav-right">
       <div class="lang-block">
@@ -25,7 +65,10 @@
           </template>
         </el-dropdown>
       </div>
-      <div class="person-block">
+      <div
+        class="person-block"
+        @click="toMinePage"
+      >
         <i class="fa fa-user-circle-o"></i>
       </div>
     </div>
@@ -39,17 +82,39 @@
 import { RouterView, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useLangStore } from '@/stores/lang'
+import { desktopRoutePrefix } from '@/config'
 
 const router = useRouter()
 
 function toHomePage() {
-  router.push('/aicmp/desktop/home')
+  router.replace(`${desktopRoutePrefix}/home`)
 }
 function toPastPage() {
-  router.push('/aicmp/desktop/past')
+  router.replace(`${desktopRoutePrefix}/past`)
 }
 function toUpcomePage() {
-  router.push('/aicmp/desktop/upcoming')
+  router.replace(`${desktopRoutePrefix}/upcoming`)
+}
+function toTrendPage() {
+  router.replace(`${desktopRoutePrefix}/trend`)
+}
+function toFollowPage() {
+  router.replace(`${desktopRoutePrefix}/follow`)
+}
+function toArticlePage() {
+  router.replace(`${desktopRoutePrefix}/article`)
+}
+function toResourcesPage() {
+  router.replace(`${desktopRoutePrefix}/resources`)
+}
+function toVehiclePage() {
+  router.replace(`${desktopRoutePrefix}/vehicle`)
+}
+function toOverviewPage() {
+  router.replace(`${desktopRoutePrefix}/overview`)
+}
+function toMinePage() {
+  router.replace(`${desktopRoutePrefix}/mine`)
 }
 
 const i18n = useI18n()

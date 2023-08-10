@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import { desktopRoutePrefix, mobileRoutePrefix } from '@/config'
 import DesktopLayout from '@/layout/desktop/index.vue'
 import MobileLayout from '@/layout/mobile/index.vue'
 
@@ -9,11 +9,11 @@ const router = createRouter({
     {
       path: '/',
       meta: { checkDevice: true },
-      redirect: '/aicmp/desktop/home'
+      redirect: `${desktopRoutePrefix}/home`
     },
     {
-      path: '/aicmp/desktop',
-      redirect: '/aicmp/desktop/home',
+      path: desktopRoutePrefix,
+      redirect: `${desktopRoutePrefix}/home`,
       component: DesktopLayout,
       children: [
         {
@@ -37,8 +37,8 @@ const router = createRouter({
       ]
     },
     {
-      path: '/aicmp/mobile',
-      redirect: '/aicmp/mobile/home',
+      path: mobileRoutePrefix,
+      redirect: `${mobileRoutePrefix}/home`,
       component: MobileLayout,
       children: [
         {
@@ -78,7 +78,7 @@ router.beforeEach((to, from) => {
   if (meta.checkDevice) {
     if (checkIsMobile()) {
       if (fullPath.indexOf('/aicmp') <= -1) {
-        return { path: `/aicmp/mobile${fullPath}` }
+        return { path: `${mobileRoutePrefix}${fullPath}` }
       } else {
         if (fullPath.indexOf('/mobile') <= -1) {
           return { path: fullPath.replace('/desktop', '/mobile') }
@@ -86,7 +86,7 @@ router.beforeEach((to, from) => {
       }
     } else {
       if (fullPath.indexOf('/aicmp') <= -1) {
-        return { path: `/aicmp/desktop${fullPath}` }
+        return { path: `${desktopRoutePrefix}${fullPath}` }
       } else {
         if (fullPath.indexOf('/desktop') <= -1) {
           return { path: fullPath.replace('/mobile', '/desktop') }

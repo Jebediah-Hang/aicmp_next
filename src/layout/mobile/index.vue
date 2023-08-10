@@ -52,7 +52,7 @@
     </div>
     <div
       class="nav-item"
-      @click="toResourcePage"
+      @click="toResourcesPage"
     >
       <i class="fa fa-cubes"></i>
       <div>{{ $t('mobile.menu.resources') }}</div>
@@ -73,6 +73,7 @@ import { RouterView, useRouter, useRoute } from 'vue-router'
 import { useScroll } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { useLangStore } from '@/stores/lang'
+import { mobileRoutePrefix } from '@/config'
 
 const mainView = ref<HTMLElement | null>(null)
 const { directions } = useScroll(mainView)
@@ -96,14 +97,20 @@ const isHomePage = computed<boolean>(() => {
 
 const router = useRouter()
 function toHomePage() {
-  router.replace('/aicmp/mobile/home')
+  router.replace(`${mobileRoutePrefix}/home`)
 }
 function toMissionPage() {
-  router.replace('/aicmp/mobile/mission')
+  router.replace(`${mobileRoutePrefix}/mission`)
 }
-function toTrendPage() {}
-function toResourcePage() {}
-function toArticlePage() {}
+function toTrendPage() {
+  router.replace(`${mobileRoutePrefix}/trend`)
+}
+function toResourcesPage() {
+  router.replace(`${mobileRoutePrefix}/resources`)
+}
+function toArticlePage() {
+  router.replace(`${mobileRoutePrefix}/article`)
+}
 
 const i18n = useI18n()
 const { setLang } = useLangStore()
