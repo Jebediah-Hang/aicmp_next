@@ -15,6 +15,9 @@ export default {
       article: 'ARTICLE',
       vehicle: 'VEHICLE',
       overview: 'OVERVIEW'
+    },
+    home: {
+      more: 'Learn More'
     }
   },
   mobile: {

@@ -151,7 +151,7 @@ function setLanguage(locale: string) {
       .home-logo {
         width: 200px;
         height: 40px;
-        // background-image: url(../../assets/aicmp.png);
+        background-image: url(../../assets/aicmp.png);
         background-size: cover;
         background-position: left;
         background-repeat: no-repeat;

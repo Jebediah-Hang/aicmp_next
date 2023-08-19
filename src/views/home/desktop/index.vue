@@ -1,6 +1,73 @@
 <template>
-  <div class="home-page">Desktop Home</div>
+  <div class="home-page">
+    <div class="count-dowm">
+      {{ countDown.day }} . {{ countDown.hour }} : {{ countDown.minute }} : {{ countDown.seconds }}
+    </div>
+    <div class="breathing-light">
+      <div class="light-core"></div>
+    </div>
+    <div class="mission-detail">
+      <div class="mission-name">Starlink Group 7-1</div>
+      <div class="mission-info">Tue Aug 22, 2023 14:04</div>
+      <div class="mission-info">SLC-4E, Vandenberg SFB, California, USA</div>
+      <div class="mission-info">Falcon 9 B1061.15</div>
+      <div class="mission-info">Low Earth Orbit</div>
+      <div class="mission-info">SpaceX</div>
+      <div class="mission-desc">SpaceX launch of a batch of Starlink v2-mini satellites for their second generation high-speed low earth orbit internet satellite constellation.</div>
+    </div>
+    <div class="more-block">
+      <div class="more-btn">{{ $t('desktop.home.more') }}</div>
+    </div>
+  </div>
 </template>
+
+<script lang="ts" setup>
+
+import { onMounted, onBeforeUnmount, reactive, ref } from 'vue'
+import { setInterval, clearInterval } from 'worker-timers'
+
+interface CountTime {
+  day: string,
+  hour: string,
+  minute: string,
+  seconds: string
+}
+const countDown: CountTime = reactive({
+  day: '00',
+  hour: '00',
+  minute: '00',
+  seconds: '00'
+})
+
+const endTime: number = new Date('2023-08-22 14:04:00').getTime()
+const countTimer = ref<number | null>(null)
+
+function numberPad(val: number): string {
+  return val < 10 ? `0${val}` : String(val)
+}
+
+onMounted(() => {
+  countTimer.value = setInterval(() => {
+    const diffTime: number = Math.floor((endTime - new Date().getTime()) / 1000)
+    if (diffTime > 0) {
+      countDown.day = numberPad(Math.floor(diffTime / 24 / 60 / 60))
+      countDown.hour = numberPad(Math.floor(diffTime / 60 / 60 % 24))
+      countDown.minute = numberPad(Math.floor(diffTime / 60 % 60))
+      countDown.seconds = numberPad(Math.floor(diffTime % 60))
+    } else {
+      countDown.day = '00'
+      countDown.hour = '00'
+      countDown.minute = '00'
+      countDown.seconds = '00'
+      clearInterval(countTimer.value as number)
+    }
+  }, 1000)
+})
+onBeforeUnmount(() => {
+  clearInterval(countTimer.value as number)
+})
+
+</script>
 
 <style lang="scss" scoped>
 .home-page {
@@ -8,5 +75,77 @@
   height: calc(100vh - 64px);
   color: #fff;
   background-color: rgba(0, 0, 0, .9);
+  .count-dowm {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+  }
+  .breathing-light {
+    margin-bottom: 40px;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @keyframes breathing {
+      0% {
+        width: 50%;
+        opacity: 0.6;
+      }
+      50% {
+        width: 90%;
+        opacity: 1;
+      }
+      100% {
+        width: 50%;
+        opacity: 0.6;
+      }
+    }
+    .light-core {
+      height: 4px;
+      animation: breathing 5s infinite ease-in-out;
+      background: radial-gradient(white 10%, rgba(0, 0, 0, 0) 70%);
+    }
+  }
+  .mission-detail {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .mission-name {
+      font-size: 36px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .mission-info {
+      font-size: 20px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .mission-desc {
+      padding-top: 12px;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+  .more-block {
+    width: 100%;
+    position: fixed;
+    bottom: 30px;
+    display: flex;
+    justify-content: center;
+    .more-btn {
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+      &:hover {
+        color: #409eff;
+      }
+    }
+  }
 }
 </style>

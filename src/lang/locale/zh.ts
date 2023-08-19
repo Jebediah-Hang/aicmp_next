@@ -15,6 +15,9 @@ export default {
       article: '专栏',
       vehicle: '载具',
       overview: '概览'
+    },
+    home: {
+      more: '了解更多'
     }
   },
   mobile: {
