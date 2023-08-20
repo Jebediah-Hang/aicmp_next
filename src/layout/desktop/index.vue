@@ -81,7 +81,7 @@
 <script setup lang="ts">
 import { RouterView, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { useLangStore } from '@/stores/lang'
+import { useLangStore } from '@/stores/common'
 import { desktopRoutePrefix } from '@/config'
 
 const router = useRouter()

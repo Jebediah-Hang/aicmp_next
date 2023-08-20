@@ -68,32 +68,4 @@ const router = createRouter({
   ]
 })
 
-function checkIsMobile() : boolean {
-  const device = navigator.userAgent.toLowerCase()
-  return /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(device)
-}
-
-router.beforeEach((to, from) => {
-  const { fullPath, meta } = to
-  if (meta.checkDevice) {
-    if (checkIsMobile()) {
-      if (fullPath.indexOf('/aicmp') <= -1) {
-        return { path: `${mobileRoutePrefix}${fullPath}` }
-      } else {
-        if (fullPath.indexOf('/mobile') <= -1) {
-          return { path: fullPath.replace('/desktop', '/mobile') }
-        }
-      }
-    } else {
-      if (fullPath.indexOf('/aicmp') <= -1) {
-        return { path: `${desktopRoutePrefix}${fullPath}` }
-      } else {
-        if (fullPath.indexOf('/desktop') <= -1) {
-          return { path: fullPath.replace('/mobile', '/desktop') }
-        }
-      }
-    }
-  }
-})
-
 export default router

@@ -1,5 +1,5 @@
-export const desktopRoutePrefix = '/aicmp/desktop'
-export const mobileRoutePrefix = '/aicmp/mobile'
+export const desktopRoutePrefix = '/aicmp'
+export const mobileRoutePrefix = '/aicmp/m'
 
 export default {
   desktopRoutePrefix,

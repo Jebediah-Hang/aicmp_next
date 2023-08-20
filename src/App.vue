@@ -3,13 +3,27 @@
 </template>
 
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { useLangStore } from '@/stores/lang'
+import { RouterView, useRouter } from 'vue-router'
+import { useLangStore, useIsMobileStore } from '@/stores/common'
+import { desktopRoutePrefix, mobileRoutePrefix } from '@/config'
+import { checkIsMobile } from '@/utils'
 
 const i18n = useI18n()
 const { lang } = useLangStore()
 i18n.locale.value = lang
+
+const { isMobile, setMobileStatus } = useIsMobileStore()
+const currentIsMobile: boolean = checkIsMobile()
+const router = useRouter()
+if (currentIsMobile && !isMobile) {
+  router.replace(`${mobileRoutePrefix}/home`)
+}
+if (!currentIsMobile && isMobile) {
+  router.replace(`${desktopRoutePrefix}/home`)
+}
+setMobileStatus(currentIsMobile)
+
 </script>
 
 <style>

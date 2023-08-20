@@ -72,7 +72,7 @@ import { ref, toRefs, watch, computed } from 'vue'
 import { RouterView, useRouter, useRoute } from 'vue-router'
 import { useScroll } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
-import { useLangStore } from '@/stores/lang'
+import { useLangStore } from '@/stores/common'
 import { mobileRoutePrefix } from '@/config'
 
 const mainView = ref<HTMLElement | null>(null)
