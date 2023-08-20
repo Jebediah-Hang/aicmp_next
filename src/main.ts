@@ -5,6 +5,7 @@ import { createPersistedState } from 'pinia-plugin-persistedstate'
 import App from './App.vue'
 import router from './router'
 import i18n from './lang'
+import ElementPlus from 'element-plus'
 
 const pinia = createPinia()
 pinia.use(
@@ -16,6 +17,7 @@ pinia.use(
 )
 
 const app = createApp(App)
+app.use(ElementPlus)
 app.use(pinia)
 app.use(router)
 app.use(i18n)

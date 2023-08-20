@@ -1,11 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import vue from '@vitejs/plugin-vue'
 import importToCDN from 'vite-plugin-cdn-import'
 
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -14,12 +10,6 @@ import { visualizer } from 'rollup-plugin-visualizer'
 export default defineConfig({
   plugins: [
     vue(),
-    AutoImport({
-      resolvers: [ElementPlusResolver()]
-    }),
-    Components({
-      resolvers: [ElementPlusResolver()]
-    }),
     importToCDN({
       modules: [
         {
@@ -41,6 +31,12 @@ export default defineConfig({
           name: 'vue-router',
           var: 'VueRouter',
           path: 'https://unpkg.com/vue-router@4.2.4/dist/vue-router.global.prod.js'
+        },
+        {
+          name: 'element-plus',
+          var: 'ElementPlus',
+          path: 'https://unpkg.com/element-plus@2.3.8/dist/index.full.min.js',
+          css: 'https://unpkg.com/element-plus@2.3.8/dist/index.css'
         },
         {
           name: 'pinia',
