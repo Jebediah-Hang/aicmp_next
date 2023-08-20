@@ -28,6 +28,11 @@ export default defineConfig({
           path: 'https://unpkg.com/vue@3.3.4/dist/vue.global.prod.js'
         },
         {
+          name: 'vue-demi',
+          var: 'VueDemi',
+          path: 'https://unpkg.com/vue-demi@0.14.5/lib/index.iife.js'
+        },
+        {
           name: 'vue-i18n',
           var: 'VueI18n',
           path: 'https://unpkg.com/vue-i18n@9.3.0-beta.25/dist/vue-i18n.global.prod.js',
