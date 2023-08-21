@@ -1,27 +1,144 @@
 <template>
   <div class="home-page">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam nostrum eveniet maxime praesentium iste aliquid repudiandae perferendis ut molestiae cumque dolorem perspiciatis tempora, quia, quam eaque voluptate dolor quis quos.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum animi numquam consequuntur aspernatur quisquam suscipit sed nobis, vel cum earum, in atque, at nesciunt a repellat eveniet reiciendis distinctio delectus?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, magni eum? Totam placeat dolores aut, eos sed, recusandae, animi nostrum soluta assumenda veritatis voluptatum dicta quos excepturi modi. Hic, accusamus.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores error accusamus harum eos debitis saepe? Quae nemo commodi molestias dolores beatae ducimus, tempora, nobis itaque nisi sed veritatis voluptate tempore.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, modi accusamus quisquam odio, culpa expedita praesentium iste maiores explicabo nulla harum voluptates ullam libero eius laudantium, doloribus illo porro voluptatem.
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus, distinctio doloribus quisquam modi, eveniet, est numquam quae nihil dolorem voluptate debitis velit! Incidunt suscipit, maiores consequuntur porro accusantium excepturi ad?
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum enim nihil odio quidem magni dicta debitis illo accusantium qui rerum quos facere dignissimos reiciendis nobis similique explicabo deleniti, cum esse?
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda omnis velit, nobis molestiae placeat voluptatem blanditiis architecto officia! Nobis quisquam minima neque aperiam necessitatibus nesciunt doloribus nihil aut assumenda sed?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorem odit aliquam voluptatem dolores. Magnam officiis distinctio aliquid repudiandae rem aperiam dolorem. Consequuntur dolorem reprehenderit quia fugit explicabo officia commodi.
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim sequi sunt dolore dicta itaque, rerum sed, a, aut ducimus nihil molestiae. Itaque dolore quisquam animi error fugit veritatis, cum ad?
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit similique ullam nulla quis suscipit, tempora necessitatibus placeat commodi molestiae, nostrum optio officia iusto accusantium veniam harum porro distinctio. Quidem, accusantium.
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint reiciendis natus corporis nihil pariatur ut omnis, quia, facere qui, dolore quasi blanditiis doloribus assumenda nulla esse sequi est tenetur dolorum!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eveniet facilis quo, repellat repellendus quisquam suscipit enim veniam! Aliquam tempore molestias mollitia ducimus perferendis iste, aut quam vero voluptates. Alias!
+    <div class="count-dowm">
+      {{ countDown.day }} . {{ countDown.hour }} : {{ countDown.minute }} : {{ countDown.seconds }}
+    </div>
+    <div class="breathing-light">
+      <div class="light-core"></div>
+    </div>
+    <div class="mission-detail">
+      <div class="mission-name">Starlink Group 7-1</div>
+      <div class="mission-info">Tue Aug 22, 2023 14:04</div>
+      <div class="mission-info">SLC-4E, Vandenberg SFB, California, USA</div>
+      <div class="mission-info">Falcon 9 B1061.15</div>
+      <div class="mission-info">Low Earth Orbit</div>
+      <div class="mission-info">SpaceX</div>
+      <div class="mission-desc">SpaceX launch of a batch of Starlink v2-mini satellites for their second generation high-speed low earth orbit internet satellite constellation.</div>
+    </div>
+    <div class="more-block">
+      <div class="more-btn">{{ $t('mobile.home.more') }}</div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { onMounted, onBeforeUnmount, reactive, ref } from 'vue'
+import { setInterval, clearInterval } from 'worker-timers'
+import { type CountTime } from '@/types/homePage'
+
+const countDown: CountTime = reactive({
+  day: '00',
+  hour: '00',
+  minute: '00',
+  seconds: '00'
+})
+
+const endTime: number = new Date('2023-08-22 14:04:00').getTime()
+const countTimer = ref<number | null>(null)
+
+function numberPad(val: number): string {
+  return val < 10 ? `0${val}` : String(val)
+}
+
+onMounted(() => {
+  countTimer.value = setInterval(() => {
+    const diffTime: number = Math.floor((endTime - new Date().getTime()) / 1000)
+    if (diffTime > 0) {
+      countDown.day = numberPad(Math.floor(diffTime / 24 / 60 / 60))
+      countDown.hour = numberPad(Math.floor(diffTime / 60 / 60 % 24))
+      countDown.minute = numberPad(Math.floor(diffTime / 60 % 60))
+      countDown.seconds = numberPad(Math.floor(diffTime % 60))
+    } else {
+      countDown.day = '00'
+      countDown.hour = '00'
+      countDown.minute = '00'
+      countDown.seconds = '00'
+      clearInterval(<number>countTimer.value)
+    }
+  }, 1000)
+})
+onBeforeUnmount(() => {
+  clearInterval(<number>countTimer.value)
+})
 </script>
 
 <style lang="scss" scoped>
 .home-page {
+  margin-top: 30px;
+  height: calc(100vh - 100px);
+  width: 100%;
   color: #fff;
-  // background-color: rgba(0, 0, 0, .9);
+  .count-dowm {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+  }
+  .breathing-light {
+    margin-bottom: 40px;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @keyframes breathing {
+      0% {
+        width: 50%;
+        opacity: 0.6;
+      }
+      50% {
+        width: 90%;
+        opacity: 1;
+      }
+      100% {
+        width: 50%;
+        opacity: 0.6;
+      }
+    }
+    .light-core {
+      height: 4px;
+      animation: breathing 5s infinite ease-in-out;
+      background: radial-gradient(white 10%, rgba(0, 0, 0, 0) 70%);
+    }
+  }
+  .mission-detail {
+    margin: 0 auto;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .mission-name {
+      font-size: 26px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .mission-info {
+      font-size: 16px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .mission-desc {
+      padding-top: 12px;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+  .more-block {
+    width: 100%;
+    position: fixed;
+    bottom: 90px;
+    display: flex;
+    justify-content: center;
+    .more-btn {
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+      &:hover {
+        color: #409eff;
+      }
+    }
+  }
 }
 </style>

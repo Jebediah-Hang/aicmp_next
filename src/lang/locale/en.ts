@@ -27,6 +27,9 @@ export default {
       trend: 'TREND',
       resources: 'RESOURCES',
       article: 'ARTICLE'
+    },
+    home: {
+      more: 'Learn More'
     }
   }
 }

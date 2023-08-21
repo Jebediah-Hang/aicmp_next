@@ -22,16 +22,10 @@
 </template>
 
 <script lang="ts" setup>
-
 import { onMounted, onBeforeUnmount, reactive, ref } from 'vue'
 import { setInterval, clearInterval } from 'worker-timers'
+import { type CountTime } from '@/types/homePage'
 
-interface CountTime {
-  day: string,
-  hour: string,
-  minute: string,
-  seconds: string
-}
 const countDown: CountTime = reactive({
   day: '00',
   hour: '00',

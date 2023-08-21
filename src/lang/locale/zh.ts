@@ -27,6 +27,9 @@ export default {
       trend: '动态',
       resources: '资源',
       article: '专栏'
+    },
+    home: {
+      more: '更多'
     }
   }
 }

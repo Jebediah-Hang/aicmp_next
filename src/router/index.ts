@@ -8,7 +8,6 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      meta: { checkDevice: true },
       redirect: `${desktopRoutePrefix}/home`
     },
     {
@@ -19,19 +18,16 @@ const router = createRouter({
         {
           path: 'home',
           name: 'D_Home',
-          meta: { checkDevice: true },
           component: () => import('@/views/home/desktop/index.vue')
         },
         {
           path: 'past',
           name: 'D_Past',
-          meta: { checkDevice: true },
           component: () => import('@/views/mission/desktop/pastMission.vue')
         },
         {
           path: 'upcoming',
           name: 'D_Upcomeing',
-          meta: { checkDevice: true },
           component: () => import('@/views/mission/desktop/upcomeMission.vue')
         }
       ]
@@ -44,26 +40,22 @@ const router = createRouter({
         {
           path: 'home',
           name: 'M_Home',
-          meta: { checkDevice: true },
           component: () => import('@/views/home/mobile/index.vue')
         },
         {
           path: 'mission',
           name: 'M_Mission',
-          meta: { checkDevice: true },
           component: () => import('@/views/mission/mobile/index.vue')
         }
       ]
     },
     {
       path: '/404',
-      meta: { checkDevice: false },
       component: () => import('@/pages/error.vue')
     },
     {
       path: '/:pathMatch(.*)',
-      redirect: '/404',
-      meta: { checkDevice: false }
+      redirect: '/404'
     }
   ]
 })
