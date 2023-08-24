@@ -8,6 +8,15 @@ import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: 'js/[name].[hash].js',
+        chunkFileNames: 'js/[name].[hash].js',
+        assetFileNames: '[ext]/[name].[hash].[ext]'
+      }
+    }
+  },
   plugins: [
     vue(),
     importToCDN({
@@ -15,33 +24,33 @@ export default defineConfig({
         {
           name: 'vue',
           var: 'Vue',
-          path: 'https://unpkg.com/vue@3.3.4/dist/vue.global.prod.js'
+          path: 'https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js'
         },
         {
           name: 'vue-demi',
           var: 'VueDemi',
-          path: 'https://unpkg.com/vue-demi@0.14.5/lib/index.iife.js'
+          path: 'https://cdn.bootcdn.net/ajax/libs/vue-demi/0.14.5/index.iife.min.js'
         },
         {
           name: 'vue-i18n',
           var: 'VueI18n',
-          path: 'https://unpkg.com/vue-i18n@9.3.0-beta.25/dist/vue-i18n.global.prod.js',
+          path: 'https://cdn.bootcdn.net/ajax/libs/vue-i18n/9.3.0-beta.25/vue-i18n.global.prod.min.js',
         },
         {
           name: 'vue-router',
           var: 'VueRouter',
-          path: 'https://unpkg.com/vue-router@4.2.4/dist/vue-router.global.prod.js'
+          path: 'https://cdn.staticfile.org/vue-router/4.2.4/vue-router.global.prod.min.js'
         },
         {
           name: 'element-plus',
           var: 'ElementPlus',
-          path: 'https://unpkg.com/element-plus@2.3.8/dist/index.full.min.js',
-          css: 'https://unpkg.com/element-plus@2.3.8/dist/index.css'
+          path: 'https://cdn.staticfile.org/element-plus/2.3.8/index.full.min.js',
+          css: 'https://cdn.staticfile.org/element-plus/2.3.8/index.min.css'
         },
         {
           name: 'pinia',
           var: 'Pinia',
-          path: 'https://unpkg.com/pinia@2.1.6/dist/pinia.iife.prod.js'
+          path: 'https://cdn.bootcdn.net/ajax/libs/pinia/2.1.6/pinia.iife.prod.min.js'
         }
       ]
     }),

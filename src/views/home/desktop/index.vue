@@ -7,13 +7,15 @@
       <div class="light-core"></div>
     </div>
     <div class="mission-detail">
-      <div class="mission-name">Starlink Group 7-1</div>
-      <div class="mission-info">Tue Aug 22, 2023 14:04</div>
-      <div class="mission-info">SLC-4E, Vandenberg SFB, California, USA</div>
-      <div class="mission-info">Falcon 9 B1061.15</div>
+      <div class="mission-name">SpaceX Crew-7</div>
+      <div class="mission-info">Fri Aug 25, 2023 15:49 GMT+8</div>
+      <div class="mission-info">LC-39A, Kennedy Space Center, Florida, USA</div>
+      <div class="mission-info">Falcon 9 B1081.1</div>
       <div class="mission-info">Low Earth Orbit</div>
       <div class="mission-info">SpaceX</div>
-      <div class="mission-desc">SpaceX launch of a batch of Starlink v2-mini satellites for their second generation high-speed low earth orbit internet satellite constellation.</div>
+      <div class="mission-desc">
+        SpaceX Crew-7 is the seventh operational crewed rotation mission of a Crew Dragon spacecraft to the International Space Station. The crew will consist of commander Jasmin Moghbeli (NASA), pilot Andreas Mogensen (ESA), and mission specialists Satoshi Furukawa (JAXA) and Konstantin Borisov (Roscosmos).
+      </div>
     </div>
     <div class="more-block">
       <div class="more-btn">{{ $t('desktop.home.more') }}</div>
@@ -33,7 +35,7 @@ const countDown: CountTime = reactive({
   seconds: '00'
 })
 
-const endTime: number = new Date('2023-08-22 14:04:00').getTime()
+const endTime: number = new Date('2023-08-25 15:49:00').getTime()
 const countTimer = ref<number | null>(null)
 
 function numberPad(val: number): string {

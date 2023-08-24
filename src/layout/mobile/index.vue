@@ -166,6 +166,7 @@ function setLanguage(locale: string) {
 .nav-bar {
   width: 100%;
   height: 60px;
+  user-select: none;
   box-shadow: 0 0 6px #888;
   border-top: rgba(0, 0, 0, 0.2) solid 1px;
   position: fixed;
