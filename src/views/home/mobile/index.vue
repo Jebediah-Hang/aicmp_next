@@ -8,7 +8,7 @@
     </div>
     <div class="mission-detail">
       <div class="mission-name">SpaceX Crew-7</div>
-      <div class="mission-info">Fri Aug 25, 2023 15:49 GMT+8</div>
+      <div class="mission-info">Fri Aug 26, 2023 15:49 GMT+8</div>
       <div class="mission-info">LC-39A, Kennedy Space Center, Florida, USA</div>
       <div class="mission-info">Falcon 9 B1081.1</div>
       <div class="mission-info">Low Earth Orbit</div>
@@ -35,7 +35,7 @@ const countDown: CountTime = reactive({
   seconds: '00'
 })
 
-const endTime: number = new Date('2023-08-25 15:49:00').getTime()
+const endTime: number = new Date('2023-08-26 15:49:00').getTime()
 const countTimer = ref<number | null>(null)
 
 function numberPad(val: number): string {

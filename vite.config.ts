@@ -24,7 +24,7 @@ export default defineConfig({
         {
           name: 'vue',
           var: 'Vue',
-          path: 'https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js'
+          path: 'https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.prod.min.js'
         },
         {
           name: 'vue-demi',
@@ -39,13 +39,13 @@ export default defineConfig({
         {
           name: 'vue-router',
           var: 'VueRouter',
-          path: 'https://cdn.staticfile.org/vue-router/4.2.4/vue-router.global.prod.min.js'
+          path: 'https://cdn.bootcdn.net/ajax/libs/vue-router/4.2.4/vue-router.global.prod.min.js'
         },
         {
           name: 'element-plus',
           var: 'ElementPlus',
-          path: 'https://cdn.staticfile.org/element-plus/2.3.8/index.full.min.js',
-          css: 'https://cdn.staticfile.org/element-plus/2.3.8/index.min.css'
+          path: 'https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.8/index.full.min.js',
+          css: 'https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.8/index.min.css'
         },
         {
           name: 'pinia',
