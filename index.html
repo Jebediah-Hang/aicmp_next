@@ -6,9 +6,102 @@
     <link rel="stylesheet" href="/fontawesome/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AICMP</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .loading-page {
+        width: 100%;
+        height: 100vh;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .loading-block {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      @keyframes flame {
+        0% {
+          transform: scaleX(1.5);
+          opacity: 1;
+        }
+        50% {
+          transform: scaleX(1);
+          opacity: 0.6;
+        }
+        100% {
+          transform: scaleX(1.5);
+          opacity: 1;
+        }
+      }
+      .flame-block {
+        width: 20%;
+        height: 100px;
+        position: relative;
+        transform-origin: right;
+        animation: flame 6s infinite ease-in-out;
+      }
+      .flame-top {
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(270deg, #fff0 0%, #fff 10%, #fff0 100%);
+        position: absolute;
+        top: 46px;
+        right: 0;
+      }
+      .flame-bottom {
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(270deg, #fff0 0%, #fff 10%, #fff0 100%);
+        position: absolute;
+        bottom: 40px;
+        right: 0;
+      }
+      .rocket-block {
+        width: 130px;
+        height: 100px;
+      }
+      @keyframes breathing {
+        0% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.4;
+        }
+      }
+      .loading-text {
+        margin-top: 26px;
+        color: #fff;
+        font-size: 26px;
+        animation: breathing 3s infinite ease-in-out;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="loading-page">
+        <div class="loading-block">
+          <div class="flame-block">
+            <div class="flame-top"></div>
+            <div class="flame-bottom"></div>
+          </div>
+          <div class="rocket-block">
+            <svg fill="#fff" viewBox="0 0 1260 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22068" width="100" height="100">
+              <path d="M354.4 640q-62.848 36.576-153.152 36.576l-73.152 0 0-36.576-36.576 0q-7.424 0-12.864-13.44t-5.44-32.288q0-13.728 4-28-33.152-1.152-55.136-6.016t-22.016-11.712 22.016-11.712 55.136-6.016q-4-14.272-4-28 0-18.848 5.44-32.288t12.864-13.44l36.576 0 0-36.576 73.152 0q90.272 0 153.152 36.576l636 0q24 4 60.864 10.272t46.016 8q50.848 8.576 85.728 23.136t47.712 27.136 12.864 22.848-12.864 22.848-47.712 27.136-85.728 23.136q-9.152 1.728-46.016 8t-60.864 10.272l-636 0zM993.856 496q30.272 20.576 30.272 52.576t-30.272 52.576l46.272 17.152q38.848-27.424 38.848-69.728t-38.848-69.728zM357.28 649.152l580 0q-124 21.728-260.576 45.728-32.576 0-64.576 13.728t-47.424 27.424l-16 13.728-164.576 164.576q-14.848 14.848-40.288 25.728t-51.136 10.848l-54.848 0-53.152-265.152 16.576 0q89.728 0 156-36.576zM201.28 411.424l-16.576 0 53.152-265.152 54.848 0q26.272 0 51.424 10.848t40 25.728l164.576 164.576q2.272 2.272 6.272 6.016t17.44 13.152 27.712 16.576 35.136 13.152 41.44 6.016l260.576 45.728-580 0q-66.272-36.576-156-36.576z" p-id="22069"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="loading-text">LOADING</div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
