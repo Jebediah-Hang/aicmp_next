@@ -15,8 +15,6 @@
       <div class="mission-info">SpaceX</div>
       <div class="mission-desc">
         Psyche is a planned orbiter mission that will explore the origin of planetary cores by studying the metallic asteroid 16 Psyche. Lindy Elkins-Tanton of Arizona State University is the Principal Investigator who proposed this mission for NASA's Discovery Program. NASA's Jet Propulsion Laboratory (JPL) will manage the project.
-        <br/>
-        16 Psyche is the heaviest known M-type asteroid, and is thought to be the exposed iron core of a protoplanet, the remnant of a violent collision with another object that stripped off its outer crust. Radar observations of the asteroid from Earth indicate an iron–nickel composition. On 4 January 2017, the Psyche mission was selected for NASA's Discovery #14 mission
       </div>
     </div>
     <div class="more-block">
