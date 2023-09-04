@@ -7,14 +7,14 @@
       <div class="light-core"></div>
     </div>
     <div class="mission-detail">
-      <div class="mission-name">SpaceX Crew-7</div>
-      <div class="mission-info">Fri Aug 26, 2023 15:49 GMT+8</div>
+      <div class="mission-name">Psyche</div>
+      <div class="mission-info">Thu Oct 5, 2023 22:38 GMT+8</div>
       <div class="mission-info">LC-39A, Kennedy Space Center, Florida, USA</div>
-      <div class="mission-info">Falcon 9 B1081.1</div>
-      <div class="mission-info">Low Earth Orbit</div>
+      <div class="mission-info">Falcon Heavy B1079.1</div>
+      <div class="mission-info">Heliocentric Orbit</div>
       <div class="mission-info">SpaceX</div>
       <div class="mission-desc">
-        SpaceX Crew-7 is the seventh operational crewed rotation mission of a Crew Dragon spacecraft to the International Space Station. The crew will consist of commander Jasmin Moghbeli (NASA), pilot Andreas Mogensen (ESA), and mission specialists Satoshi Furukawa (JAXA) and Konstantin Borisov (Roscosmos).
+        Psyche is a planned orbiter mission that will explore the origin of planetary cores by studying the metallic asteroid 16 Psyche. Lindy Elkins-Tanton of Arizona State University is the Principal Investigator who proposed this mission for NASA's Discovery Program. NASA's Jet Propulsion Laboratory (JPL) will manage the project.
       </div>
     </div>
     <div class="more-block">
@@ -35,7 +35,7 @@ const countDown: CountTime = reactive({
   seconds: '00'
 })
 
-const endTime: number = new Date('2023-08-26 15:49:00').getTime()
+const endTime: number = new Date('2023-10-05 22:38:00').getTime()
 const countTimer = ref<number | null>(null)
 
 function numberPad(val: number): string {
