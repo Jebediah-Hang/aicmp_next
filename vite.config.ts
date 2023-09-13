@@ -13,7 +13,14 @@ export default defineConfig({
       output: {
         entryFileNames: 'js/[name].[hash].js',
         chunkFileNames: 'js/[name].[hash].js',
-        assetFileNames: '[ext]/[name].[hash].[ext]'
+        assetFileNames: (assetInfo) => {
+          const suffix = assetInfo.name?.split('.').at(-1)?.toLowerCase()
+          if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'].includes(<string>suffix)) {
+            return 'images/[name].[hash].[ext]'
+          } else {
+            return '[ext]/[name].[hash].[ext]'
+          }
+        }
       }
     }
   },
