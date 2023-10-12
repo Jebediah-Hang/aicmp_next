@@ -3,12 +3,12 @@
     <div class="count-dowm">
       {{ countDown.day }} . {{ countDown.hour }} : {{ countDown.minute }} : {{ countDown.seconds }}
     </div>
-    <div class="breathing-light">
+    <div class="light-line">
       <div class="light-core"></div>
     </div>
     <div class="mission-detail">
       <div class="mission-name">Psyche</div>
-      <div class="mission-info">Thu Oct 5, 2023 22:38 GMT+8</div>
+      <div class="mission-info">Thu Oct 13, 2023 22:19 GMT+8</div>
       <div class="mission-info">LC-39A, Kennedy Space Center, Florida, USA</div>
       <div class="mission-info">Falcon Heavy B1079.1</div>
       <div class="mission-info">Heliocentric Orbit</div>
@@ -24,18 +24,18 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onBeforeUnmount, reactive, ref } from 'vue'
+import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { setInterval, clearInterval } from 'worker-timers'
 import { type CountTime } from '@/types/homePage'
 
-const countDown: CountTime = reactive({
+const countDown = ref<CountTime>({
   day: '00',
   hour: '00',
   minute: '00',
   seconds: '00'
 })
 
-const endTime: number = new Date('2023-10-05 22:38:00').getTime()
+const endTime: number = new Date('2023-10-13 22:19:00').getTime()
 const countTimer = ref<number | null>(null)
 
 function numberPad(val: number): string {
@@ -46,21 +46,29 @@ onMounted(() => {
   countTimer.value = setInterval(() => {
     const diffTime: number = Math.floor((endTime - new Date().getTime()) / 1000)
     if (diffTime > 0) {
-      countDown.day = numberPad(Math.floor(diffTime / 24 / 60 / 60))
-      countDown.hour = numberPad(Math.floor(diffTime / 60 / 60 % 24))
-      countDown.minute = numberPad(Math.floor(diffTime / 60 % 60))
-      countDown.seconds = numberPad(Math.floor(diffTime % 60))
+      countDown.value = {
+        day: numberPad(Math.floor(diffTime / 24 / 60 / 60)),
+        hour: numberPad(Math.floor(diffTime / 60 / 60 % 24)),
+        minute: numberPad(Math.floor(diffTime / 60 % 60)),
+        seconds: numberPad(Math.floor(diffTime % 60))
+      }
     } else {
-      countDown.day = '00'
-      countDown.hour = '00'
-      countDown.minute = '00'
-      countDown.seconds = '00'
-      clearInterval(<number>countTimer.value)
+      countDown.value = {
+        day: '00',
+        hour: '00',
+        minute: '00',
+        seconds: '00'
+      }
+      if (countTimer.value) {
+        clearInterval(<number>countTimer.value)
+      }
     }
   }, 1000)
 })
 onBeforeUnmount(() => {
-  clearInterval(<number>countTimer.value)
+  if (countTimer.value) {
+    clearInterval(<number>countTimer.value)
+  }
 })
 </script>
 
@@ -78,30 +86,16 @@ onBeforeUnmount(() => {
     justify-content: center;
     font-size: 40px;
   }
-  .breathing-light {
+  .light-line {
     margin-bottom: 40px;
     width: 100%;
     height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    @keyframes breathing {
-      0% {
-        width: 50%;
-        opacity: 0.6;
-      }
-      50% {
-        width: 90%;
-        opacity: 1;
-      }
-      100% {
-        width: 50%;
-        opacity: 0.6;
-      }
-    }
     .light-core {
+      width: 90%;
       height: 4px;
-      animation: breathing 5s infinite ease-in-out;
       background: radial-gradient(white 10%, rgba(0, 0, 0, 0) 70%);
     }
   }

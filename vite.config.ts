@@ -3,7 +3,6 @@ import { defineConfig } from 'vite'
 
 import vue from '@vitejs/plugin-vue'
 import importToCDN from 'vite-plugin-cdn-import'
-
 import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
@@ -16,7 +15,7 @@ export default defineConfig({
         assetFileNames: (assetInfo) => {
           const suffix = assetInfo.name?.split('.').at(-1)?.toLowerCase()
           if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'].includes(<string>suffix)) {
-            return 'images/[name].[hash].[ext]'
+            return 'img/[name].[hash].[ext]'
           } else {
             return '[ext]/[name].[hash].[ext]'
           }

@@ -6,6 +6,7 @@
     <div class="person-block">
       <i class="fa fa-user-circle-o"></i>
     </div>
+    <div class="home-logo"></div>
     <div class="lang-block">
       <el-dropdown trigger="click" @command="setLanguage">
         <i class="fa fa-language"></i>
@@ -138,6 +139,15 @@ function setLanguage(locale: string) {
       color: #666;
       font-size: 22px;
     }
+  }
+  .home-logo {
+    width: 150px;
+    height: 30px;
+    align-self: center;
+    background-image: url(../../assets/aicmp.png);
+    background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
   }
   .lang-block {
     width: 50px;
