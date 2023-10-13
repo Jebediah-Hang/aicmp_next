@@ -30,38 +30,23 @@
     <RouterView />
   </div>
   <div class="nav-bar" :class="isHomePage ? 'dark' : 'light'">
-    <div
-      class="nav-item"
-      @click="toHomePage"
-    >
+    <div class="nav-item" @click="toHomePage">
       <i class="fa fa-home"></i>
       <div>{{ $t('mobile.menu.home') }}</div>
     </div>
-    <div
-      class="nav-item"
-      @click="toMissionPage"
-    >
+    <div class="nav-item" @click="toMissionPage">
       <i class="fa fa-rocket"></i>
       <div>{{ $t('mobile.menu.mission') }}</div>
     </div>
-    <div
-      class="nav-item"
-      @click="toTrendPage"
-    >
+    <div class="nav-item" @click="toTrendPage">
       <i class="fa fa-compass"></i>
       <div>{{ $t('mobile.menu.trend') }}</div>
     </div>
-    <div
-      class="nav-item"
-      @click="toResourcesPage"
-    >
+    <div class="nav-item" @click="toResourcesPage">
       <i class="fa fa-cubes"></i>
       <div>{{ $t('mobile.menu.resources') }}</div>
     </div>
-    <div
-      class="nav-item"
-      @click="toArticlePage"
-    >
+    <div class="nav-item" @click="toArticlePage">
       <i class="fa fa-book"></i>
       <div>{{ $t('mobile.menu.article') }}</div>
     </div>
@@ -74,7 +59,7 @@ import { RouterView, useRouter, useRoute } from 'vue-router'
 import { useScroll } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { useLangStore } from '@/stores/common'
-import { mobileRoutePrefix } from '@/config'
+import { RouterConfig } from '@/config'
 
 const mainView = ref<HTMLElement | null>(null)
 const { directions } = useScroll(mainView)
@@ -91,26 +76,27 @@ watch(mainViewScrollToBottom, (val) => {
   }
 })
 
+const { RoutePathPrefixMobile, RouteNamePrefixMobile } = RouterConfig
 const route = useRoute()
 const isHomePage = computed<boolean>(() => {
-  return route.name === 'M_Home'
+  return route.name === `${RouteNamePrefixMobile}Home`
 })
 
 const router = useRouter()
 function toHomePage() {
-  router.replace(`${mobileRoutePrefix}/home`)
+  router.replace(`${RoutePathPrefixMobile}/home`)
 }
 function toMissionPage() {
-  router.replace(`${mobileRoutePrefix}/mission`)
+  router.replace(`${RoutePathPrefixMobile}/mission`)
 }
 function toTrendPage() {
-  router.replace(`${mobileRoutePrefix}/trend`)
+  router.replace(`${RoutePathPrefixMobile}/trend`)
 }
 function toResourcesPage() {
-  router.replace(`${mobileRoutePrefix}/resources`)
+  router.replace(`${RoutePathPrefixMobile}/resources`)
 }
 function toArticlePage() {
-  router.replace(`${mobileRoutePrefix}/article`)
+  router.replace(`${RoutePathPrefixMobile}/article`)
 }
 
 const i18n = useI18n()

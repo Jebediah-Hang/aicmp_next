@@ -18,15 +18,16 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useIsMobileStore } from '@/stores/common'
-import { desktopRoutePrefix, mobileRoutePrefix } from '@/config'
+import { RouterConfig } from '@/config'
 
+const { RoutePathPrefixDesktop, RoutePathPrefixMobile } = RouterConfig
 const { isMobile } = useIsMobileStore()
 const router = useRouter()
 function goBackHome() {
   if (isMobile) {
-    router.replace(`${mobileRoutePrefix}/home`)
+    router.replace(`${RoutePathPrefixMobile}/home`)
   } else {
-    router.replace(`${desktopRoutePrefix}/home`)
+    router.replace(`${RoutePathPrefixDesktop}/home`)
   }
 }
 </script>

@@ -6,19 +6,29 @@ export default {
     }
   },
   desktop: {
+    main: {
+      top: 'Back Top'
+    },
     menu: {
-      past: 'PAST',
-      upcoming: 'UPCOMING',
+      mission: 'MISSION',
       trend: 'TREND',
-      follow: 'FOLLOW',
-      resources: 'RESOURCES',
       article: 'ARTICLE',
+      resource: 'RESOURCE',
       vehicle: 'VEHICLE',
-      overview: 'OVERVIEW'
+      statistic: 'STATISTIC'
     },
     home: {
       more: 'Learn More'
-    }
+    },
+    mission: {
+      upcome: 'UPCOME',
+      past: 'PAST'
+    },
+    trend: {},
+    article: {},
+    resource: {},
+    vehicle: {},
+    statistic: {}
   },
   mobile: {
     menu: {

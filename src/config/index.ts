@@ -1,7 +1,7 @@
-export const desktopRoutePrefix = '/aicmp'
-export const mobileRoutePrefix = '/aicmp/m'
-
-export default {
-  desktopRoutePrefix,
-  mobileRoutePrefix
+// router prefix
+export const RouterConfig = {
+  RoutePathPrefixMobile: '/aicmp/m',
+  RoutePathPrefixDesktop: '/aicmp',
+  RouteNamePrefixMobile: 'Desktop_',
+  RouteNamePrefixDesktop: 'Mobile_'
 }
