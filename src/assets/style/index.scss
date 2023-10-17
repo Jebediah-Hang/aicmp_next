@@ -1,0 +1,33 @@
+// global
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// avue crud searchfrom
+.avue-crud {
+  .avue-crud__search {
+    .avue-form__group {
+      padding-top: 6px;
+      background-color: #f6f6f6;
+      .avue-form__menu--right {
+        padding-right: 10px !important;
+      }
+    }
+  }
+}
+
+// scrollbar
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(128, 128, 128, .4);
+}
