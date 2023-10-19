@@ -1,5 +1,5 @@
 <template>
-  <div class="resource-table">
+  <div class="suggestion-table">
     <avue-crud
       :data="data"
       :option="option"
@@ -69,7 +69,7 @@ function onLoad() {
 </script>
 
 <style scoped lang="scss">
-.resource-table {
+.suggestion-table {
   padding: 10px;
   width: 100%;
 }

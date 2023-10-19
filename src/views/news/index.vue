@@ -1,5 +1,5 @@
 <template>
-  <div class="resource-table">
+  <div class="news-table">
     <avue-crud
       :data="data"
       :option="option"
@@ -69,7 +69,7 @@ function onLoad() {
 </script>
 
 <style scoped lang="scss">
-.resource-table {
+.news-table {
   padding: 10px;
   width: 100%;
 }

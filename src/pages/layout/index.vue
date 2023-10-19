@@ -1,7 +1,12 @@
 <template>
   <div class="main-layout">
     <div class="menu-block">
-      <el-menu router :default-active="route.path">
+      <el-menu
+        router
+        active-text-color="#FFF"
+        background-color="#F6F6F6"
+        :default-active="route.path"
+      >
         <el-menu-item
           v-for="(item, index) in MenuList"
           :key="index"
@@ -38,6 +43,18 @@ const route = useRoute()
     height: 100vh;
     :deep(.el-menu) {
       height: 100%;
+      overflow: auto;
+      border-right-color: #CCC;
+      .el-menu-item {
+        border-left: transparent solid 6px;
+        &:hover {
+          background-color: rgba($color: #5599FF, $alpha: .3);
+        }
+        &.is-active {
+          border-left: #0066FF solid 6px;
+          background-color: #5599FF;
+        }
+      }
     }
   }
   .content-block {

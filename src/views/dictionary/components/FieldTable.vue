@@ -1,19 +1,17 @@
 <template>
-  <div class="resource-table">
-    <avue-crud
-      :data="data"
-      :option="option"
-      :table-loading="loading"
-      v-model:page="page"
-      v-model:search="search"
-      @selection-change="selectionChange"
-      @search-change="searchChange"
-      @search-reset="searchReset"
-      @refresh-change="onLoad"
-      @on-load="onLoad"
-    >
-    </avue-crud>
-  </div>
+  <avue-crud
+    :data="data"
+    :option="option"
+    :table-loading="loading"
+    v-model:page="page"
+    v-model:search="search"
+    @selection-change="selectionChange"
+    @search-change="searchChange"
+    @search-reset="searchReset"
+    @refresh-change="onLoad"
+    @on-load="onLoad"
+  >
+  </avue-crud>
 </template>
 
 <script setup lang="ts">
@@ -26,7 +24,9 @@ const search = ref({})
 const page = ref({
   total: 100,
   pageSize: 10,
-  currentPage: 1
+  currentPage: 1,
+  pagerCount: 5,
+  layout: 'total, prev, pager, next'
 })
 const option = ref({
   addBtn: false,
@@ -38,7 +38,8 @@ const option = ref({
   index: true,
   indexLabel: '序号',
   indexWidth: 60,
-  searchMenuSpan: 8,
+  searchSpan: 12,
+  searchMenuSpan: 12,
   searchMenuPosition: 'right',
   column: [
     {
@@ -69,8 +70,4 @@ function onLoad() {
 </script>
 
 <style scoped lang="scss">
-.resource-table {
-  padding: 10px;
-  width: 100%;
-}
 </style>
