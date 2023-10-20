@@ -35,7 +35,7 @@ export default {
       home: 'HOME',
       mission: 'MISSION',
       trend: 'TREND',
-      resources: 'RESOURCES',
+      resource: 'RESOURCE',
       article: 'ARTICLE'
     },
     home: {

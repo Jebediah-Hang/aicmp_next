@@ -1,25 +1,25 @@
 <template>
   <div class="nav-bar">
     <div class="nav-left">
-      <div class="nav-home" @click="toHomePage">
+      <div class="nav-home" @click="toPage('home')">
         <div class="home-logo"></div>
       </div>
-      <div class="nav-item" @click="toMissionPage">
+      <div class="nav-item" @click="toPage('mission')">
         {{ $t('desktop.menu.mission') }}
       </div>
-      <div class="nav-item" @click="toTrendPage">
+      <div class="nav-item" @click="toPage('trend')">
         {{ $t('desktop.menu.trend') }}
       </div>
-      <div class="nav-item" @click="toArticlePage">
+      <div class="nav-item" @click="toPage('article')">
         {{ $t('desktop.menu.article') }}
       </div>
-      <div class="nav-item" @click="toResourcePage">
+      <div class="nav-item" @click="toPage('resource')">
         {{ $t('desktop.menu.resource') }}
       </div>
-      <div class="nav-item" @click="toVehiclePage">
+      <div class="nav-item" @click="toPage('vehicle')">
         {{ $t('desktop.menu.vehicle') }}
       </div>
-      <div class="nav-item" @click="toStatisticPage">
+      <div class="nav-item" @click="toPage('statistic')">
         {{ $t('desktop.menu.statistic') }}
       </div>
     </div>
@@ -35,74 +35,73 @@
           </template>
         </el-dropdown>
       </div>
-      <div class="person-block" @click="toMinePage">
+      <div class="person-block" @click="toPage('personal')">
         <i class="fa fa-user-circle-o"></i>
       </div>
     </div>
   </div>
   <div ref="mainView" class="content-main">
-    <div class="content-block">
+    <div
+      class="content-block"
+      :style="{ width: isHomePage ? '100%' : '1200px' }"
+    >
       <RouterView />
     </div>
   </div>
-  <div
-    v-if="scrollDistent >= 300"
-    class="scroll-top"
-    @click="scrollToTop"
-  >
-    <el-tooltip placement="top" :content="$t('desktop.main.top')">
-      <i class="fa fa-rocket"></i>
-    </el-tooltip>
-  </div>
+  <transition name="el-fade-in-linear">
+    <div
+      v-if="scrollDistent >= 300"
+      class="scroll-top"
+      @click="scrollToTop"
+    >
+      <el-tooltip placement="top" :content="$t('desktop.main.top')">
+        <i class="fa fa-rocket"></i>
+      </el-tooltip>
+    </div>
+  </transition>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { RouterView, useRouter } from 'vue-router'
+import { ref, computed } from 'vue'
+import { RouterView, useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useScroll } from '@vueuse/core'
 import { useLangStore } from '@/stores/common'
 import { RouterConfig } from '@/config'
 
+const { RouteNamePrefixDesktop } = RouterConfig
+const route = useRoute()
+const isHomePage = computed<boolean>(() => {
+  return route.name === `${RouteNamePrefixDesktop}Home`
+})
+
 const mainView = ref<HTMLElement | null>(null)
 const { y: scrollDistent } = useScroll(mainView)
 function scrollToTop() {
-  mainView.value?.scrollTo(0, 0)
+  const scrollTime: number = Math.floor(Math.log(scrollDistent.value)) * 100
+  if (scrollTime > 0) {
+    const totalSteps: number = scrollTime / 20
+    const scrollPerStep: number = scrollDistent.value / totalSteps
+    const scrollTimer = setInterval(() => {
+      if (scrollDistent.value > 0) {
+        mainView.value?.scroll(0, scrollDistent.value - scrollPerStep)
+      } else {
+        clearInterval(scrollTimer)
+      }
+    }, 20)
+  } else {
+    mainView.value?.scrollTo(0, 0)
+  }
 }
 
 const { RoutePathPrefixDesktop } = RouterConfig
 const router = useRouter()
-
-function toHomePage() {
-  router.replace(`${RoutePathPrefixDesktop}/home`)
-}
-
-function toMissionPage() {
-  router.replace(`${RoutePathPrefixDesktop}/mission`)
-}
-function toTrendPage() {
-  router.replace(`${RoutePathPrefixDesktop}/trend`)
-}
-function toArticlePage() {
-  router.replace(`${RoutePathPrefixDesktop}/article`)
-}
-function toResourcePage() {
-  router.replace(`${RoutePathPrefixDesktop}/resource`)
-}
-function toVehiclePage() {
-  router.replace(`${RoutePathPrefixDesktop}/vehicle`)
-}
-function toStatisticPage() {
-  router.replace(`${RoutePathPrefixDesktop}/statistic`)
-}
-
-function toMinePage() {
-  router.replace(`${RoutePathPrefixDesktop}/mine`)
+function toPage(page: string) {
+  router.replace(`${RoutePathPrefixDesktop}/${page}`)
 }
 
 const i18n = useI18n()
 const { setLang } = useLangStore()
-
 function setLanguage(locale: string) {
   i18n.locale.value = locale
   setLang(locale)
@@ -188,7 +187,6 @@ function setLanguage(locale: string) {
   width: 100%;
   overflow: auto;
   .content-block {
-    width: 1200px;
     margin: 0 auto;
   }
 }
@@ -201,9 +199,10 @@ function setLanguage(locale: string) {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: #aaa solid 1px;
   box-shadow: 0 0 6px #888;
   position: absolute;
-  bottom: 100px;
+  bottom: 60px;
   right: 40px;
   &:hover {
     > i {

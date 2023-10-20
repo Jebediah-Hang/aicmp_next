@@ -7,14 +7,14 @@
       <div class="light-core"></div>
     </div>
     <div class="mission-detail">
-      <div class="mission-name">Psyche</div>
-      <div class="mission-info">Thu Oct 13, 2023 22:19 GMT+8</div>
+      <div class="mission-name">Europa Clipper</div>
+      <div class="mission-info">Thu Oct 10, 2024 23:51 GMT+8</div>
       <div class="mission-info">LC-39A, Kennedy Space Center, Florida, USA</div>
-      <div class="mission-info">Falcon Heavy B1079.1</div>
+      <div class="mission-info">Falcon Heavy</div>
       <div class="mission-info">Heliocentric Orbit</div>
       <div class="mission-info">SpaceX</div>
       <div class="mission-desc">
-        Psyche is a planned orbiter mission that will explore the origin of planetary cores by studying the metallic asteroid 16 Psyche. Lindy Elkins-Tanton of Arizona State University is the Principal Investigator who proposed this mission for NASA's Discovery Program. NASA's Jet Propulsion Laboratory (JPL) will manage the project.
+        Europa Clipper will conduct a detailed survey of Europa and use a sophisticated suite of science instruments to investigate whether the icy moon has conditions suitable for life. Key mission objectives are to produce high-resolution images of Europa's surface, determine its composition, look for signs of recent or ongoing geological activity, measure the thickness of the moon’s icy shell, search for subsurface lakes, and determine the depth and salinity of Europa's ocean.
       </div>
     </div>
     <div class="more-block">
@@ -35,7 +35,7 @@ const countDown = ref<CountTime>({
   seconds: '00'
 })
 
-const endTime: number = new Date('2023-10-13 22:19:00').getTime()
+const endTime: number = new Date('2024-10-10 23:51:00').getTime()
 const countTimer = ref<number | null>(null)
 
 function numberPad(val: number): string {

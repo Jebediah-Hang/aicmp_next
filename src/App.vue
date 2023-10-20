@@ -1,8 +1,11 @@
 <template>
-  <RouterView />
+  <el-config-provider :locale="elementConfigLocale">
+    <RouterView />
+  </el-config-provider>
 </template>
 
 <script setup lang="ts">
+import { computed, toRefs } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterView, useRouter } from 'vue-router'
 import { useLangStore, useIsMobileStore } from '@/stores/common'
@@ -10,18 +13,27 @@ import { RouterConfig } from '@/config'
 import { checkIsMobile } from '@/utils'
 
 const i18n = useI18n()
-const { lang } = useLangStore()
-i18n.locale.value = lang
+const { lang } = toRefs(useLangStore())
+i18n.locale.value = lang.value
+
+const elementConfigLocale = computed(() => {
+  if (lang.value === 'zh') {
+    return window.ElementPlusLocaleZhCn
+  } else {
+    return window.ElementPlusLocaleEn
+  }
+})
 
 const { RoutePathPrefixDesktop, RoutePathPrefixMobile } = RouterConfig
 const { isMobile, setMobileStatus } = useIsMobileStore()
 const currentIsMobile: boolean = checkIsMobile()
 const router = useRouter()
-if (currentIsMobile && !isMobile) {
-  router.replace(`${RoutePathPrefixMobile}/home`)
-}
-if (!currentIsMobile && isMobile) {
-  router.replace(`${RoutePathPrefixDesktop}/home`)
+if (currentIsMobile !== isMobile) {
+  if (currentIsMobile) {
+    router.replace(`${RoutePathPrefixMobile}/home`)
+  } else {
+    router.replace(`${RoutePathPrefixDesktop}/home`)
+  }
 }
 setMobileStatus(currentIsMobile)
 

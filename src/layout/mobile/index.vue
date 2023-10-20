@@ -3,7 +3,7 @@
     class="main-header"
     :style="{ height: `${!isHomePage && isShowHeader ? 40 : 0}px`}"
   >
-    <div class="person-block">
+    <div class="person-block" @click="toPage('personal')">
       <i class="fa fa-user-circle-o"></i>
     </div>
     <div class="home-logo"></div>
@@ -30,23 +30,23 @@
     <RouterView />
   </div>
   <div class="nav-bar" :class="isHomePage ? 'dark' : 'light'">
-    <div class="nav-item" @click="toHomePage">
+    <div class="nav-item" @click="toPage('home')">
       <i class="fa fa-home"></i>
       <div>{{ $t('mobile.menu.home') }}</div>
     </div>
-    <div class="nav-item" @click="toMissionPage">
+    <div class="nav-item" @click="toPage('mission')">
       <i class="fa fa-rocket"></i>
       <div>{{ $t('mobile.menu.mission') }}</div>
     </div>
-    <div class="nav-item" @click="toTrendPage">
+    <div class="nav-item" @click="toPage('trend')">
       <i class="fa fa-compass"></i>
       <div>{{ $t('mobile.menu.trend') }}</div>
     </div>
-    <div class="nav-item" @click="toResourcesPage">
+    <div class="nav-item" @click="toPage('resource')">
       <i class="fa fa-cubes"></i>
-      <div>{{ $t('mobile.menu.resources') }}</div>
+      <div>{{ $t('mobile.menu.resource') }}</div>
     </div>
-    <div class="nav-item" @click="toArticlePage">
+    <div class="nav-item" @click="toPage('article')">
       <i class="fa fa-book"></i>
       <div>{{ $t('mobile.menu.article') }}</div>
     </div>
@@ -83,25 +83,12 @@ const isHomePage = computed<boolean>(() => {
 })
 
 const router = useRouter()
-function toHomePage() {
-  router.replace(`${RoutePathPrefixMobile}/home`)
-}
-function toMissionPage() {
-  router.replace(`${RoutePathPrefixMobile}/mission`)
-}
-function toTrendPage() {
-  router.replace(`${RoutePathPrefixMobile}/trend`)
-}
-function toResourcesPage() {
-  router.replace(`${RoutePathPrefixMobile}/resources`)
-}
-function toArticlePage() {
-  router.replace(`${RoutePathPrefixMobile}/article`)
+function toPage(page: string) {
+  router.replace(`${RoutePathPrefixMobile}/${page}`)
 }
 
 const i18n = useI18n()
 const { setLang } = useLangStore()
-
 function setLanguage(locale: string) {
   i18n.locale.value = locale
   setLang(locale)

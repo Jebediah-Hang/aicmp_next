@@ -35,7 +35,7 @@ export default {
       home: '首页',
       mission: '任务',
       trend: '动态',
-      resources: '资源',
+      resource: '资源',
       article: '专栏'
     },
     home: {
