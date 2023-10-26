@@ -12,9 +12,9 @@ export default defineConfig({
       output: {
         entryFileNames: 'js/[name].[hash].js',
         chunkFileNames: 'js/[name].[hash].js',
-        assetFileNames: (assetInfo) => {
-          const suffix = assetInfo.name?.split('.').at(-1)?.toLowerCase()
-          if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'].includes(<string>suffix)) {
+        assetFileNames: asset => {
+          const suffix = asset.name?.split('.').at(-1)?.toLowerCase()
+          if (['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp'].includes(<string>suffix)) {
             return 'img/[name].[hash].[ext]'
           } else {
             return '[ext]/[name].[hash].[ext]'

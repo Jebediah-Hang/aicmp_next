@@ -5,7 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs } from 'vue'
+import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { RouterView, useRouter } from 'vue-router'
 import { useLangStore, useIsMobileStore } from '@/stores/common'
@@ -13,7 +14,7 @@ import { RouterConfig } from '@/config'
 import { checkIsMobile } from '@/utils'
 
 const i18n = useI18n()
-const { lang } = toRefs(useLangStore())
+const { lang } = storeToRefs(useLangStore())
 i18n.locale.value = lang.value
 
 const elementConfigLocale = computed(() => {
