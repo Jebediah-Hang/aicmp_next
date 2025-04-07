@@ -5,10 +5,10 @@
 .nitro
 .cache
 dist
+build_analysis.html
 
 # Node dependencies
 node_modules
-pnpm-lock.yaml
 
 # Logs
 logs
