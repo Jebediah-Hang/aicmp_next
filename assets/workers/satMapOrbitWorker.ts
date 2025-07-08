@@ -82,7 +82,7 @@ self.onmessage = (e: MessageEvent) => {
     const now = Date.now();
     const start = now - historyLength * 60000;
     const end = now + futureLength * 60000;
-    
+
     displaySatellites.forEach(sat => {
       const { cosparId, tleLine1, tleLine2 } = sat;
       const satrec = twoline2satrec(tleLine1, tleLine2);
@@ -139,7 +139,7 @@ self.onmessage = (e: MessageEvent) => {
             // 添加点组
             satOrbitCoordGroups.push({
               groupId: `${cosparId}_orbit_${orbitSegmentIndexs[cosparId]}`,
-              coords: [ [longitude, latitude] ]
+              coords: [[longitude, latitude]]
             });
           } else {
             // 在当前组添加点
@@ -155,7 +155,7 @@ self.onmessage = (e: MessageEvent) => {
           // 添加点组
           satOrbitCoordGroups.push({
             groupId: `${cosparId}_orbit_${orbitSegmentIndexs[cosparId]}`,
-            coords: [ [longitude, latitude] ]
+            coords: [[longitude, latitude]]
           });
         }
       }

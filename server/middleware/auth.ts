@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
-  
+
   const requestPath = getRequestURL(event).pathname;
-  
+
   if (authApiSets.has(requestPath)) {
 
     const token = getHeader(event, 'Authorization')?.split(' ')[1];

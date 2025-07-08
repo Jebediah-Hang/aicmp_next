@@ -29,7 +29,7 @@ export default defineEventHandler(async () => {
     } else {
       return ResultJson.failed(404);
     }
-  } catch(error) {
+  } catch (error) {
     throw createQueryError(error);
   }
 });

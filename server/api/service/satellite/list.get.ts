@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     });
 
     return ResultJson.success(listResult);
-  } catch(error) {
+  } catch (error) {
     throw createQueryError(error);
   }
 });

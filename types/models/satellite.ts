@@ -24,9 +24,9 @@ export interface SatOrbitConfig {
   positionFrequency: number;
 }
 
-export interface MapOrbitConfig extends SatOrbitConfig {}
+export interface MapOrbitConfig extends SatOrbitConfig { }
 
-export interface EarthOrbitConfig extends SatOrbitConfig {}
+export interface EarthOrbitConfig extends SatOrbitConfig { }
 
 export interface OrbitWorkerMessage<T> {
   type: string;

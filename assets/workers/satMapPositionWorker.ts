@@ -32,7 +32,7 @@ self.onmessage = (e: MessageEvent) => {
       const latitude = degreesLat(positionGd.latitude);
       const longitude = degreesLong(positionGd.longitude);
 
-      return { cosparId, name, data: [ [longitude, latitude] ] };
+      return { cosparId, name, data: [[longitude, latitude]] };
     })
 
     self.postMessage({ data: results });

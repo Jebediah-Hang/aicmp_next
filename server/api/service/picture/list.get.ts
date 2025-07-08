@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     const listResult: Array<PictureItem> = result[0];
 
     return ResultJson.success(listResult);
-  } catch(error) {
+  } catch (error) {
     throw createQueryError(error);
   }
 });

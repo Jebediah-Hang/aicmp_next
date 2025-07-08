@@ -24,7 +24,7 @@ export function getCountdown(time: string): MissionCountdown {
   const endDate = new Date(time);
 
   const total = endDate.getTime() - Date.now();
-  
+
   if (total > 0) {
     const s = fillNumberZero(Math.floor((total / 1000) % 60));
     const m = fillNumberZero(Math.floor((total / 1000 / 60) % 60));
